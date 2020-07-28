@@ -209,7 +209,7 @@
         "diagnosticsProfile": {
           "bootDiagnostics": {
             "enabled": true,
-            "storageUri": "[reference(resourceId('Microsoft.Storage/storageAccounts/', toLower('masterstorage'))).primaryEndpoints.blob]"
+            "storageUri": "[reference(resourceId('Microsoft.Storage/storageAccounts/', toLower(parameters('storageaccount')))).primaryEndpoints.blob]"
           }
         }
       }
