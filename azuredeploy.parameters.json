@@ -16,6 +16,12 @@
       },
       "vmsize": {
           "value": "Standard_D2_v2"
+      },
+      "location": {
+          "value": "" 
+      },
+      "storageaccount": {
+          "value": "GEN-UNIQUE-10" 
       }
    
   }

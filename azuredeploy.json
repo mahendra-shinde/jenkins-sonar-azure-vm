@@ -42,14 +42,21 @@
       "metadata": {
         "description": "VM Size for Jenkins"
       }
+    },
+    "storageaccount": {
+      "type": "string",
+      "metadata": {
+        "description": "Storage account URL prefix"
+      }
     }
   },
   "variables": {
+    
   },
   "resources": [
 
     {
-      "name": "[toLower('masterstorage')]",
+      "name": "[toLower(parameters('storageaccount'))]",
       "type": "Microsoft.Storage/storageAccounts",
       "apiVersion": "2019-06-01",
       "location": "[parameters('location')]",
