@@ -7,6 +7,13 @@
       "type": "string",
       "defaultValue": "[deployment().properties.templateLink.uri]"
     },
+     "jenkins-dns": {
+            "type": "string",
+            "defaultValue": "[concat('master-', uniqueString(resourceGroup().id))]",
+            "metadata": {
+                "description": "DNS Prefix for Jenkins Master"
+            }
+        },
     "_artifactsLocationSasToken": {
       "type": "securestring",
       "defaultValue": ""
@@ -79,7 +86,7 @@
       "properties": {
         "publicIPAllocationMethod": "Dynamic",
         "dnsSettings": {
-          "domainNameLabel": "[toLower('master')]"
+          "domainNameLabel": "[parameters('jenkins-dns')]"
         }
       }
     },

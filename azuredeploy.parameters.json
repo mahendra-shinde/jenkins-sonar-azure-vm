@@ -2,7 +2,6 @@
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-      
       "adminUser": {
           "value": "mahendra" 
       },
@@ -16,7 +15,7 @@
           "value": "GEN-UNIQUE-10" 
       },
       "_artifactsLocation": {
-          "value": ""
+          "value": "https://raw.githubusercontent.com/mahendra-shinde/jenkins-sonar-azure-vm/master"
       },
       "_artifactsLocationSasToken": {
           "value": ""
