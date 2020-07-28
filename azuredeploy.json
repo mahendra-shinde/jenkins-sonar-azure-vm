@@ -239,8 +239,8 @@
         "autoUpgradeMinorVersion": true,
         "settings": {
           "fileUris": [
-            "[concat(parameters('_artifactsLocation'), '/scripts/install-jenkins.sh', parameters('_artifactsLocationSasToken'))]",
-            "[concat(parameters('_artifactsLocation'), '/scripts/sonar-service', parameters('_artifactsLocationSasToken'))]"
+            "[concat(uri(parameters('_artifactsLocation'), 'scripts/install-jenkins.sh'), parameters('_artifactsLocationSasToken'))]",
+            "[concat(uri(parameters('_artifactsLocation'), 'scripts/sonar-service'), parameters('_artifactsLocationSasToken'))]"
           ]
         },
         "protectedSettings": {
@@ -250,5 +250,9 @@
     }
   ],
   "outputs": {
+    "TemplateUrl": {
+      "type": "string",
+      "value": "[deployment().properties.templateLink.uri]"
+    }
   }
 }
