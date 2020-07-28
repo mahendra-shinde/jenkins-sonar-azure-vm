@@ -2,25 +2,57 @@
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-  
+
     "_artifactsLocation": {
       "type": "string",
       "defaultValue": "https://raw.githubusercontent.com/mahendra-shinde/jenkins-sonar-azure-vm/master/scripts"
     },
     "_artifactsLocationSasToken": {
+      "type": "securestring",
+      "defaultValue": ""
+    },
+    "adminUser": {
       "type": "string",
-      "defaultValue":""
+      "metadata": {
+        "description": "Admin Username for JenkinsVM"
+      }
+    },
+    "adminPassword": {
+      "type": "securestring",
+      "metadata": {
+        "description": "Admin user password for jenkins VM"
+      }
+    },
+    "location": {
+      "type": "string",
+      "defaultValue": "[resourceGroup().location]",
+      "metadata": {
+        "description": "resource location"
+      }
+    },
+    "vmsize": {
+      "type": "string",
+      "defaultValue": "Standard_D2_v2",
+      "allowedValues": [
+        "Standard_D2_v2",
+        "Standard_D3_v2",
+        "Standard_DS2_v2",
+        "Standard_DS3_v2"
+      ],
+      "metadata": {
+        "description": "VM Size for Jenkins"
+      }
     }
   },
   "variables": {
   },
   "resources": [
-  
+
     {
       "name": "[toLower('masterstorage')]",
       "type": "Microsoft.Storage/storageAccounts",
       "apiVersion": "2019-06-01",
-      "location": "[resourceGroup().location]",
+      "location": "[parameters('location')]",
       "tags": {
         "displayName": "master Storage Account"
       },
@@ -33,7 +65,7 @@
       "name": "master-PublicIP",
       "type": "Microsoft.Network/publicIPAddresses",
       "apiVersion": "2019-11-01",
-      "location": "[resourceGroup().location]",
+      "location": "[parameters('location')]",
       "tags": {
         "displayName": "PublicIPAddress"
       },
@@ -48,7 +80,7 @@
       "name": "master-nsg",
       "type": "Microsoft.Network/networkSecurityGroups",
       "apiVersion": "2018-08-01",
-      "location": "[resourceGroup().location]",
+      "location": "[parameters('location')]",
       "properties": {
         "securityRules": [
           {
@@ -72,7 +104,7 @@
       "name": "master-VirtualNetwork",
       "type": "Microsoft.Network/virtualNetworks",
       "apiVersion": "2019-11-01",
-      "location": "[resourceGroup().location]",
+      "location": "[parameters('location')]",
       "dependsOn": [
         "[resourceId('Microsoft.Network/networkSecurityGroups', 'master-nsg')]"
       ],
@@ -102,7 +134,7 @@
       "name": "master-NetworkInterface",
       "type": "Microsoft.Network/networkInterfaces",
       "apiVersion": "2019-11-01",
-      "location": "[resourceGroup().location]",
+      "location": "[parameters('location')]",
       "dependsOn": [
         "[resourceId('Microsoft.Network/publicIPAddresses', 'master-PublicIP')]",
         "[resourceId('Microsoft.Network/virtualNetworks', 'master-VirtualNetwork')]"
@@ -131,21 +163,21 @@
       "name": "master",
       "type": "Microsoft.Compute/virtualMachines",
       "apiVersion": "2019-07-01",
-      "location": "[resourceGroup().location]",
+      "location": "[parameters('location')]",
       "dependsOn": [
         "[resourceId('Microsoft.Network/networkInterfaces', 'master-NetworkInterface')]"
       ],
       "tags": {
-        "displayName": "master"
+        "displayName": "jenkins-vm"
       },
       "properties": {
         "hardwareProfile": {
-          "vmSize": "Standard_A2_v2"
+          "vmSize": "[parameters('vmsize')]"
         },
         "osProfile": {
-          "computerName": "master",
-          "adminUsername": "adminUsername",
-          "adminPassword": "adminPassword"
+          "computerName": "jenkins-vm",
+          "adminUsername": "[parameters('adminUser')]",
+          "adminPassword": "[parameters('adminPassword')]"
         },
         "storageProfile": {
           "imageReference": {
@@ -179,7 +211,7 @@
       "name": "master/setup-jenkins",
       "type": "Microsoft.Compute/virtualMachines/extensions",
       "apiVersion": "2019-07-01",
-      "location": "[resourceGroup().location]",
+      "location": "[parameters('location')]",
       "tags": {
         "displayName": "customScript1 for Linux VM"
       },
