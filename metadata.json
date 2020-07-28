@@ -1,0 +1,10 @@
+{
+  "$schema": "https://aka.ms/azure-quickstart-templates-metadata-schema#",
+  "type": "QuickStart",
+  "itemDisplayName": "Jenkins VM",
+  "description": "Single Jenkins VM with SonarQube and Docker pre-installed",
+  "summary": "Single Jenkins VM (Linux) with SonarQube and Docker as SystemD services",
+  "githubUsername": "mahendra-shinde",
+  "dateUpdated": "2020-07-28"
+}
+
