@@ -2,27 +2,24 @@
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-      "_artifactsLocation": {
-          "value": "https://raw.githubusercontent.com/mahendra-shinde/jenkins-sonar-azure-vm/master/scripts"
-      },
-      "_artifactsLocationSasToken": {
-          "value": ""
-      },
+      
       "adminUser": {
           "value": "mahendra" 
       },
       "adminPassword": {
-          "value": "pass21234" 
+          "value": "GEN-PASSWORD" 
       },
       "vmsize": {
           "value": "Standard_D2_v2"
       },
-      "location": {
-          "value": "" 
-      },
       "storageaccount": {
           "value": "GEN-UNIQUE-10" 
+      },
+      "_artifactsLocation": {
+          "value": ""
+      },
+      "_artifactsLocationSasToken": {
+          "value": ""
       }
-   
   }
 }
