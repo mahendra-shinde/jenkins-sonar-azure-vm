@@ -5,7 +5,7 @@
   
     "_artifactsLocation": {
       "type": "string",
-      "defaultValue": ""
+      "defaultValue": "https://raw.githubusercontent.com/mahendra-shinde/jenkins-sonar-azure-vm/master/scripts"
     },
     "_artifactsLocationSasToken": {
       "type": "string",
