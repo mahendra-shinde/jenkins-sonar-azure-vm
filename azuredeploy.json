@@ -225,12 +225,12 @@
         "autoUpgradeMinorVersion": true,
         "settings": {
           "fileUris": [
-            "[concat(parameters('_artifactsLocation'), '/scripts/customScript.sh', parameters('_artifactsLocationSasToken'))]",
+            "[concat(parameters('_artifactsLocation'), '/scripts/install-jenkins.sh', parameters('_artifactsLocationSasToken'))]",
             "[concat(parameters('_artifactsLocation'), '/scripts/sonar-service', parameters('_artifactsLocationSasToken'))]"
           ]
         },
         "protectedSettings": {
-          "commandToExecute": "sh customScript.sh"
+          "commandToExecute": "sh install-jenkins.sh"
         }
       }
     }

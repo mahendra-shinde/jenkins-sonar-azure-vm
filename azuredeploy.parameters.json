@@ -13,6 +13,9 @@
       },
       "adminPassword": {
           "value": "pass21234" 
+      },
+      "vmsize": {
+          "value": "Standard_D2_v2"
       }
    
   }
